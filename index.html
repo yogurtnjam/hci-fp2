@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Detox Prototype</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient-gradient" aria-hidden="true"></div>
+    <main id="app" class="app">
+      <header class="app__header">
+        <div>
+          <p class="eyebrow">Digital Detox Study Prototype</p>
+          <h1>Gentle, adaptive pauses for students</h1>
+        </div>
+        <nav class="app__nav" aria-label="Screen navigation">
+          <button data-screen-target="onboarding" class="nav-btn active">
+            Onboarding
+          </button>
+          <button data-screen-target="dashboard" class="nav-btn">
+            Dashboard
+          </button>
+          <button data-screen-target="ambient" class="nav-btn">
+            Ambient cues
+          </button>
+          <button data-screen-target="break" class="nav-btn">
+            Break suggestion
+          </button>
+          <button data-screen-target="reflection" class="nav-btn">
+            Reflection
+          </button>
+          <button data-screen-target="settings" class="nav-btn">
+            Settings
+          </button>
+        </nav>
+      </header>
+
+      <section id="onboarding" class="screen active" aria-labelledby="onboarding-title">
+        <h2 id="onboarding-title">Warm onboarding</h2>
+        <p class="support">Soft goals and context to tailor gentle cues.</p>
+        <div class="card-grid">
+          <article class="card">
+            <header>
+              <p class="eyebrow">Screen harmony slider</p>
+              <strong id="habit-output">Balanced today</strong>
+            </header>
+            <input
+              type="range"
+              id="habit-range"
+              min="1"
+              max="5"
+              step="1"
+              value="3"
+              aria-label="Screen habit intensity"
+            />
+            <p class="microcopy">
+              1 = I feel scattered · 5 = Flowing focus. Used to set cue warmth only.
+            </p>
+          </article>
+          <article class="card">
+            <header>
+              <p class="eyebrow">Where are you today?</p>
+              <strong id="context-output">Studying quietly</strong>
+            </header>
+            <div class="chip-group" role="listbox" aria-label="Context selection">
+              <button class="chip active" data-context="studying">Studying</button>
+              <button class="chip" data-context="relaxing">Relaxing</button>
+              <button class="chip" data-context="social">Social media</button>
+            </div>
+            <p class="microcopy">Only one tap needed. Choices stay small on purpose.</p>
+          </article>
+          <article class="card">
+            <header>
+              <p class="eyebrow">Soft goal</p>
+              <strong>Let’s try for mindful breaks today ☁️</strong>
+            </header>
+            <p>
+              We’ll watch for session length, scrolling bursts, and gentle pauses to adapt
+              the cues. No judgment, just rhythm.
+            </p>
+            <button id="start-session" class="primary">Begin mindful session</button>
+          </article>
+        </div>
+      </section>
+
+      <section id="dashboard" class="screen" aria-labelledby="dashboard-title">
+        <h2 id="dashboard-title">Dashboard</h2>
+        <p class="support">Ambient overview without numbers overload.</p>
+        <div class="card-grid">
+          <article class="card gradient-card" id="session-card">
+            <header>
+              <p class="eyebrow">Session drift</p>
+              <strong><span id="session-duration">0:00</span> in flow</strong>
+            </header>
+            <p id="session-caption">Soft sunrise hues = light focus.</p>
+            <div class="breathing-panel">
+              <div class="breathing-dot" aria-hidden="true"></div>
+              <p>
+                Ambient breathing keeps cognitive load low. When hues warm, it’s time to
+                stretch.
+              </p>
+            </div>
+          </article>
+          <article class="card">
+            <header>
+              <p class="eyebrow">Mindful streak</p>
+              <strong><span id="streak-count">1</span> gentle breaks</strong>
+            </header>
+            <p>Breaks automatically log when you tap a feeling after a pause.</p>
+            <div class="streak-bar" aria-hidden="true">
+              <span></span>
+            </div>
+          </article>
+          <article class="card">
+            <header>
+              <p class="eyebrow">Adaptive cues running</p>
+              <strong id="adaptive-state">Calm baseline</strong>
+            </header>
+            <ul class="micro-list">
+              <li>Session length adjusts color fade intensity.</li>
+              <li>Fast scroll activates a playful slowdown.</li>
+              <li>Pauses surface a non-judgmental nudge.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <header>
+              <p class="eyebrow">Interaction flow map</p>
+              <strong>Onboard → Dashboard → Ambient cues → Break → Reflection</strong>
+            </header>
+            <p>Every tap stays single-step to satisfy Hick-Hyman constraints.</p>
+            <ul class="micro-list">
+              <li>Visual cues offload timing reminders.</li>
+              <li>Emoji check-ins log mindful moments.</li>
+              <li>Settings slider tunes cue intensity for research trials.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="ambient" class="screen" aria-labelledby="ambient-title">
+        <h2 id="ambient-title">Ambient cue lab</h2>
+        <p class="support">
+          Interventions appear subtly in the periphery—no pop-ups, no alerts.
+        </p>
+        <div class="card-grid">
+          <article class="card cue-card">
+            <header>
+              <p class="eyebrow">Color fading cue</p>
+              <strong>Warmer tones after longer sessions</strong>
+            </header>
+            <div class="cue-preview" id="color-preview"></div>
+            <p>
+              Based on working memory limits—when cognitive load rises, the gradient softly
+              warms to signal a breath.
+            </p>
+          </article>
+          <article class="card cue-card">
+            <header>
+              <p class="eyebrow">Breathing dot</p>
+              <strong>Slow inhale / exhale pacing</strong>
+            </header>
+            <div class="cue-preview">
+              <div class="breathing-dot breathing-dot--large" aria-hidden="true"></div>
+            </div>
+            <p>The pulsing dot invites a pause without commanding attention.</p>
+          </article>
+          <article class="card cue-card">
+            <header>
+              <p class="eyebrow">Gentle slowdown</p>
+              <strong>Scroll feed resists doom-scrolling</strong>
+            </header>
+            <div class="scroll-lab">
+              <div class="scroll-feed" id="scroll-feed" tabindex="0">
+                <p>Field notes · Week 4 observations</p>
+                <p>
+                  Students notice the ambient fade before they consciously register a cue.
+                </p>
+                <p>Slow scrolling reinforces intention and reduces effort.</p>
+                <p>Short pauses unlock a playful message: “Let’s take things slow 🌿”.</p>
+                <p>Micro breaks of 20s restore focus with minimal guilt.</p>
+                <p>Emoji reflections are faster than typed journaling.</p>
+                <p>Adaptive slider allows researchers to test cue intensity.</p>
+                <p>Scroll speed, pause length, and task switches feed the model.</p>
+                <p>Gentle slowdown always stays optional—users can ignore it.</p>
+              </div>
+              <div class="slowdown-message" id="slowdown-message">
+                <span role="status">Let’s take things slow 🌿</span>
+              </div>
+            </div>
+            <p class="microcopy">
+              Hick-Hyman + Fitts optimized: no precise gestures, just scroll as usual.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="break" class="screen" aria-labelledby="break-title">
+        <h2 id="break-title">Mindful break suggestion</h2>
+        <p class="support">Passive nudge triggered by pauses or long sessions.</p>
+        <article class="card break-card">
+          <div class="wave" aria-hidden="true"></div>
+          <header>
+            <p class="eyebrow">You’ve been focused for a while</p>
+            <strong id="break-message">You’ve been working hard — want a tiny reset?</strong>
+          </header>
+          <p>
+            You can ignore this. If it feels right, take 20 seconds to stretch or sip
+            water.
+          </p>
+          <button class="primary" id="log-break">Log mindful reset</button>
+        </article>
+        <article class="card">
+          <header>
+            <p class="eyebrow">Recent ambient data</p>
+            <strong>Mock study notes</strong>
+          </header>
+          <ul class="micro-list" id="mock-data">
+            <li>Session length average: 14 min</li>
+            <li>Fast scroll events: 3</li>
+            <li>Pauses detected: 4</li>
+          </ul>
+        </article>
+      </section>
+
+      <section id="reflection" class="screen" aria-labelledby="reflection-title">
+        <h2 id="reflection-title">Reflection check-in</h2>
+        <p class="support">One-tap emojis keep the load low.</p>
+        <article class="card">
+          <header>
+            <p class="eyebrow">How was that pause?</p>
+            <strong>Log a mindful moment</strong>
+          </header>
+          <div class="emoji-row" role="listbox" aria-label="Reflection choices">
+            <button class="emoji" data-mood="rested">😊</button>
+            <button class="emoji" data-mood="balanced">😌</button>
+            <button class="emoji" data-mood="energized">🌿</button>
+          </div>
+          <p class="microcopy">Each tap automatically updates your streak.</p>
+          <div class="reflection-log" id="reflection-log">No entries yet.</div>
+        </article>
+      </section>
+
+      <section id="settings" class="screen" aria-labelledby="settings-title">
+        <h2 id="settings-title">Settings</h2>
+        <p class="support">Adaptive knobs kept intentionally simple.</p>
+        <article class="card">
+          <div class="setting-row">
+            <div>
+              <p class="eyebrow">Adaptive mode</p>
+              <strong>Personalized cues</strong>
+              <p class="microcopy">Toggles responsiveness to session metrics.</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="adaptive-toggle" checked />
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="setting-row">
+            <div>
+              <p class="eyebrow">Cue intensity</p>
+              <strong id="intensity-output">50%</strong>
+              <p class="microcopy">Higher values warm the gradient sooner.</p>
+            </div>
+            <input type="range" id="cue-intensity" min="10" max="100" value="50" />
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <button id="break-chip" class="break-chip" hidden>
+      Gentle break ready · tap to view 🌱
+    </button>
+
+    <script src="app.js"></script>
+  </body>
+</html>
